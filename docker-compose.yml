@@ -1,0 +1,13 @@
+version: '3.9'
+
+services:
+  holidays.api:
+    image: ${DOCKER_REGISTRY-}holidays
+    build:
+      context: .
+      dockerfile: src/Holidays.API/Dockerfile
+    depends_on: 
+      - holidays.db
+  
+  holidays.db:
+    image: "mcr.microsoft.com/mssql/server:2019-latest"
