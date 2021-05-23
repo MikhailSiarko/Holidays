@@ -5,7 +5,6 @@ services:
     container_name: holidays.api
     image: msiarko/holidays.api:latest
     environment:
-      - ASPNETCORE_ENVIRONMENT=Development
       - ConnectionString=Server=db,1433;Database=Holidays;User Id=sa;Password=Holiday12!
     build:
       context: .
