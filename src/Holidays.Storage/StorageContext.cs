@@ -22,7 +22,7 @@ namespace Holidays.Storage
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(_configuration.GetConnectionString("Default"));
+            optionsBuilder.UseSqlServer(_configuration["ConnectionString"]);
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
