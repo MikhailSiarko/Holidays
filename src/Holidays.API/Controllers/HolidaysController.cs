@@ -47,7 +47,7 @@ namespace Holidays.API.Controllers
         public async Task<IActionResult> MaxFreeDaysInRow(int year, string country)
         {
             var count = await _holidaysService.MaxFreeDaysInRowAsync(country, year);
-            return Ok(count);
+            return Ok(new {maxFreeDaysInRow = count});
         }
     }
 }

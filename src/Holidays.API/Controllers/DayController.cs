@@ -21,8 +21,8 @@ namespace Holidays.API.Controllers
         public async Task<IActionResult> Get(int day, int month, int year, string country)
         {
             var dayStatus = await _holidaysService.GetDayStatusAsync(country, new DateTime(year, month, day));
-            
-            return Ok(dayStatus.ToString("G"));
+
+            return Ok(new { DayStatus = dayStatus.ToString("G") });
         }
     }
 }
