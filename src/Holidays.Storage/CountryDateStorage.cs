@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Holidays.Storage
 {
-    public class CountryDateStorage : IStorage<CountryDate>, IDisposable
+    public class CountryDateStorage : IStorage<CountryDate>
     {
         private readonly StorageContext _storageContext;
 

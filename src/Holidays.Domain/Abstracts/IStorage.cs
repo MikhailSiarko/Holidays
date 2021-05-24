@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Holidays.Domain.Abstracts
 {
-    public interface IStorage<TE>
+    public interface IStorage<TE> : IDisposable
     {
         Task<bool> ExistsAsync(TE model);
 

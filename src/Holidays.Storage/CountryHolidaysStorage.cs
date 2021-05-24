@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Holidays.Storage
 {
-    public class CountryHolidaysStorage : IStorage<CountryHoliday>, IDisposable
+    public class CountryHolidaysStorage : IStorage<CountryHoliday>
     {
         private readonly StorageContext _storageContext;
 
@@ -95,8 +95,7 @@ namespace Holidays.Storage
                     Entity = new CountryHolidayEntity
                     {
                         CountryDateId = x.CountryDateId,
-                        Name = x.Name,
-                        
+                        Name = x.Name
                     },
                     Model = x
                 })

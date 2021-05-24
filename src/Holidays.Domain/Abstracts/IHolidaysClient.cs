@@ -5,7 +5,7 @@ using Holidays.Domain.Models;
 
 namespace Holidays.Domain.Abstracts
 {
-    public interface IHolidaysClient
+    public interface IHolidaysClient : IDisposable
     {
         Task<IEnumerable<Country>> GetCountriesAsync();
 

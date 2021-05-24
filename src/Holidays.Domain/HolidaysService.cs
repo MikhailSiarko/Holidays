@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 using Holidays.Domain.Abstracts;
@@ -195,6 +194,14 @@ namespace Holidays.Domain
         private bool IsHoliday(DateTime date, IEnumerable<CountryHoliday> holidays) => holidays.Any(x => x.Date == date);
 
         private bool IsWeekend(DateTime date) =>
-            date.DayOfWeek == DayOfWeek.Saturday || date.DayOfWeek == DayOfWeek.Sunday;
+            date.DayOfWeek is DayOfWeek.Saturday or DayOfWeek.Sunday;
+
+        public void Dispose()
+        {
+            _holidaysClient?.Dispose();
+            _countryStorage?.Dispose();
+            _countryDatesStorage?.Dispose();
+            _countryHolidayStorage?.Dispose();
+        }
     }
 }

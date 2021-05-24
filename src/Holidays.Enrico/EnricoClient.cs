@@ -10,7 +10,7 @@ using Holidays.Enrico.Models;
 
 namespace Holidays.Enrico
 {
-    public class EnricoClient : IHolidaysClient, IDisposable
+    public class EnricoClient : IHolidaysClient
     {
         private readonly HttpClient _httpClient;
         
