@@ -12,4 +12,10 @@
     <Folder Include="Controllers" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Holidays.Domain\Holidays.Domain.csproj" />
+    <ProjectReference Include="..\Holidays.Enrico\Holidays.Enrico.csproj" />
+    <ProjectReference Include="..\Holidays.Storage\Holidays.Storage.csproj" />
+  </ItemGroup>
+
 </Project>
