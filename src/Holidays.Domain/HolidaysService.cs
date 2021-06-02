@@ -12,9 +12,9 @@ namespace Holidays.Domain
         private readonly IHolidaysClient _holidaysClient;
 
         private readonly IStorage<Country> _countryStorage;
-        
+
         private readonly IStorage<CountryDate> _countryDatesStorage;
-        
+
         private readonly IStorage<CountryHoliday> _countryHolidayStorage;
 
         public HolidaysService(IHolidaysClient holidaysClient,
@@ -39,17 +39,17 @@ namespace Holidays.Domain
                 result = await _holidaysClient.GetCountriesAsync();
 
                 countries = result.ToList();
-            
+
                 await _countryStorage.SaveRangeAsync(countries);
-            } 
-            
+            }
+
             return countries;
         }
 
         public async Task<IEnumerable<CountryHoliday>> GetHolidaysAsync(string countryCode, int year)
         {
             await SaveCountriesIfNotExistsAsync();
-            
+
             var holidays =
                 (await _countryHolidayStorage.GetRangeAsync(x => x.CountryCode == countryCode && x.Date.Year == year))
                 .ToList();
@@ -67,14 +67,14 @@ namespace Holidays.Domain
             await SaveCountriesIfNotExistsAsync();
 
             var holidays = (await _countryHolidayStorage
-                .GetRangeAsync(x => x.CountryCode == countryCode && x.Date.Year == year))
+                    .GetRangeAsync(x => x.CountryCode == countryCode && x.Date.Year == year))
                 .ToArray();
 
             if (!holidays.Any())
             {
                 holidays = (await SaveHolidays(countryCode, year)).ToArray();
             }
-            
+
             return GetMaxFreeCount(holidays, year);
         }
 
@@ -104,11 +104,11 @@ namespace Holidays.Domain
             var holidays = (await _holidaysClient.GetHolidaysForYearAsync(countryCode, year)).ToList();
 
             var countryDates = holidays.Select(x => new CountryDate
-            {
-                Country = countryCode,
-                Date = x.Date,
-                DayStatus = DayStatus.Holiday
-            })
+                {
+                    Country = countryCode,
+                    Date = x.Date,
+                    DayStatus = DayStatus.Holiday
+                })
                 .ToList();
 
             await _countryDatesStorage.SaveRangeAsync(countryDates);
@@ -156,7 +156,7 @@ namespace Holidays.Domain
 
             return DayStatus.FreeDay;
         }
-        
+
         private int GetMaxFreeCount(CountryHoliday[] holidays, int year)
         {
             var firstDay = new DateTime(year, 1, 1);
@@ -171,7 +171,7 @@ namespace Holidays.Domain
 
             return GetMaxCount(calendar, holidays);
         }
-        
+
         private int GetMaxCount(DateTime[] days, CountryHoliday[] holidays)
         {
             var count = 0;
@@ -191,17 +191,10 @@ namespace Holidays.Domain
             return result;
         }
 
-        private bool IsHoliday(DateTime date, IEnumerable<CountryHoliday> holidays) => holidays.Any(x => x.Date == date);
+        private bool IsHoliday(DateTime date, IEnumerable<CountryHoliday> holidays) =>
+            holidays.Any(x => x.Date == date);
 
         private bool IsWeekend(DateTime date) =>
             date.DayOfWeek is DayOfWeek.Saturday or DayOfWeek.Sunday;
-
-        public void Dispose()
-        {
-            _holidaysClient?.Dispose();
-            _countryStorage?.Dispose();
-            _countryDatesStorage?.Dispose();
-            _countryHolidayStorage?.Dispose();
-        }
     }
 }

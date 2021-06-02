@@ -19,11 +19,6 @@ namespace Holidays.Storage
             _storageContext = storageContext;
         }
 
-        public void Dispose()
-        {
-            _storageContext?.Dispose();
-        }
-
         public async Task<bool> ExistsAsync(CountryDate model)
         {
             return await _storageContext
@@ -93,7 +88,7 @@ namespace Holidays.Storage
         public async Task SaveRangeAsync(IEnumerable<CountryDate> models)
         {
             var entities = models
-                .Select(x => new 
+                .Select(x => new
                 {
                     Entity = new CountryDateEntity
                     {
