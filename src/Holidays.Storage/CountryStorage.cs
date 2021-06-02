@@ -85,13 +85,8 @@ namespace Holidays.Storage
                 .ToList();
 
             await _storageContext.AddRangeAsync(entities);
-            
-            await _storageContext.SaveChangesAsync();
-        }
 
-        public void Dispose()
-        {
-            _storageContext?.Dispose();
+            await _storageContext.SaveChangesAsync();
         }
     }
 }

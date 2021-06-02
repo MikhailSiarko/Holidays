@@ -13,7 +13,7 @@ namespace Holidays.Enrico
     public class EnricoClient : IHolidaysClient
     {
         private readonly HttpClient _httpClient;
-        
+
         private const string BaseAddress = "https://kayaposoft.com/enrico/json/v2.0";
 
         public EnricoClient()
@@ -31,7 +31,7 @@ namespace Holidays.Enrico
                     FullName = x.FullName
                 }));
         }
-        
+
         public async Task<IEnumerable<CountryHoliday>> GetHolidaysForYearAsync(string country, int year)
         {
             return await Try<IEnumerable<HolidayInfo>, IEnumerable<CountryHoliday>>(
@@ -43,14 +43,14 @@ namespace Holidays.Enrico
                     Name = x.Names.Where(y => y.Lang == "en").Select(y => y.Text).FirstOrDefault()
                 }));
         }
-        
+
         public async Task<bool> IsPublicHolidayAsync(string country, DateTime date)
         {
             return await Try<IsPublicHolidayInfo, bool>(
                 $"?action=isPublicHoliday&&date={date.Day}-{date.Month}-{date.Year}&country={country}",
                 res => res.IsPublicHoliday);
         }
-        
+
         public async Task<bool> IsWorkDayAsync(string country, DateTime date)
         {
             return await Try<IsWorkDayInfo, bool>(
