@@ -13,7 +13,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Holidays.Enrico", "src\Holi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Holidays.Storage", "src\Holidays.Storage\Holidays.Storage.csproj", "{35E97E99-2803-48BC-BEF6-BCE5E7BFBC2C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hoidays.Tests", "tests\Hoidays.Tests\Hoidays.Tests.csproj", "{E204EB68-C627-4B92-80FE-EE4A1A76A0D9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Holidays.Tests", "tests\Holidays.Tests\Holidays.Tests.csproj", "{E204EB68-C627-4B92-80FE-EE4A1A76A0D9}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{79E733AB-315E-4A59-8270-BC6D57400C81}"
 EndProject

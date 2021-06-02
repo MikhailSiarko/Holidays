@@ -110,10 +110,5 @@ namespace Holidays.Storage
                 item.Model.Id = item.Entity.Id;
             }
         }
-
-        public void Dispose()
-        {
-            _storageContext?.Dispose();
-        }
     }
 }

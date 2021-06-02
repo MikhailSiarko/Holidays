@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using Holidays.Enrico;
 using Xunit;
 
-namespace Hoidays.Tests
+namespace Holidays.Tests
 {
     public class EnricoClientFixture : IDisposable
     {
